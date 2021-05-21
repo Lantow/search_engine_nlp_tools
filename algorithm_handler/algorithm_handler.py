@@ -1,6 +1,4 @@
 from danlp.models import load_bert_base_model
-from math import ceil
-import nltk
 import numpy as np
 from data_handler import Data_handler
 

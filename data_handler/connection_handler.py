@@ -36,10 +36,6 @@ def with_conn(f):
                 return f(*args, conn=conn_obj.conn, curr=curr, **kwds)
     return wrapper
 
-@with_conn
-def test_func(exec_str, curr=None, **kwds):
-    curr.execute(exec_str)
-    t = [c for c in curr]
-    print(t[1])
 
-test_func("""SELECT document_text from public.scrapers_retsinfodocument""")
+
+
