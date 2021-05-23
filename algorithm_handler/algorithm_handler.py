@@ -3,6 +3,8 @@ import numpy as np
 from data_handler import Data_handler
 
 
+#https://www.psycopg.org/docs/cursor.html#cursor-iterable
+
 class AlgorithmHandler(DataHandler):
 
     def load_tokenizer(self):
