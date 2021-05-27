@@ -3,19 +3,8 @@ import numpy as np
 import nltk
 import re
 from math import ceil
-from os import getenv 
-from tqdm import tqdm 
-
-
-
-
-
-
-
-
-
-
-
+from os import getenv
+from tqdm import tqdm
 
 class DataHandler(PostgresConnection):
     

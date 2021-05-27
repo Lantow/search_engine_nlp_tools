@@ -31,16 +31,8 @@ class AlgorithmHandler(DataHandler):
         embed_sent_l = lambda sent: embed_sent(sent)
         embed_full_txt = lambda full_txt: map(embed_sent_l, full_txt)
         self.embeded_text = tqdm(map(embed_full_txt, self.cleaned_tokenized_text), 
-                                 "embedding all sents with BERT")       
+                                 "embedding all sents with BERT")
 
-with AlgorithmHandler() as AH:
-    AH.load_data()
-    AH.tokenize_raw_text_data()
-    AH.clean_sents()
-    AH.embed_text()
-    this = [list(i) for i in list(AH.embeded_text)] 
-    
-    
     # ext = list(list(AH.cleaned_tokenized_text)[38])
     # ex = [list(i) for i in list(AH.embeded_text)[38]]
     # print(sum([len(list(p)) for p in DH.cleaned_tokenized_text]))
