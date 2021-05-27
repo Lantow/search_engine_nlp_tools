@@ -7,21 +7,11 @@ from os import getenv
 from tqdm import tqdm 
 
 
-
-
-
-
-
-
-
-
-
-
 class DataHandler(PostgresConnection):
     
     def load_data(self):
         print("loading data")
-        exec_str = "SELECT document_text FROM public.scrapers_retsinfodocument LIMIT 100"
+        exec_str = "SELECT document_text FROM public.scrapers_retsinfodocument LIMIT 10"
         self.curr.execute(exec_str)
     
     def load_tokenizer(self):
