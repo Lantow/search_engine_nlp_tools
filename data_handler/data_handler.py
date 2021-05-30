@@ -2,8 +2,6 @@ from data_handler.connection_handler import PostgresConnection
 import numpy as np
 import nltk
 import re
-from math import ceil
-from os import getenv 
 from tqdm import tqdm 
 
 

@@ -28,7 +28,3 @@ def with_conn(f):
         with PostgresConnection() as conn_obj:
             return f(*args, conn=conn_obj.conn, curr=conn_obj.curr, **kwds)
     return wrapper
-
-
-
-
