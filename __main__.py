@@ -1,7 +1,7 @@
 from algorithm_handler.algorithm_handler import AlgorithmHandler
-from dotenv import load_dotenv
+from dotenv import load_dotenv, find_dotenv
 
-load_dotenv()
+load_dotenv(find_dotenv())
 
 if __name__ == '__main__':
     with AlgorithmHandler() as AH:
@@ -9,4 +9,4 @@ if __name__ == '__main__':
         AH.tokenize_raw_text_data()
         AH.clean_sents()
         AH.embed_text()
-        this = [list(i) for i in list(AH.embeded_text)]
+        this = [list(i) for i in AH.embeded_text]
