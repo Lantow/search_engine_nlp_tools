@@ -137,3 +137,6 @@ dmypy.json
 
 #Lokal data
 test_data.txt
+
+#Local documentation
+howto.txt
