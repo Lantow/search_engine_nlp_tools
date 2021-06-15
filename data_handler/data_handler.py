@@ -42,34 +42,3 @@ class DataHandler(PostgresConnection):
                                                "cleaning sentances")
         except Exception as E:
             raise E
-
-
-
-
-# DH = DataHandler()
-# DH.load_data()
-
-# with DataHandler() as DH:
-#     DH.load_data()
-#     DH.tokenize_raw_text_data()
-#     DH.clean_sents()
-#     pages_len = []
-#     print(sum([len(list(p)) for p in DH.cleaned_tokenized_text]))
-    # for i, page in enumerate(DH.cleaned_tokenized_text):
-    #     p = list(page)
-    #     if i == 500:
-    #         print(p[0])
-    #     pages_len.append(len(p))
-    # print(sum(pages_len), end="\n")
-    # DH.tokenize_raw_text_data()
-    
-    
-# @with_conn
-# def test_func(exec_str, curr=None, **kwds):
-#     print(type(curr))
-#     curr.execute(exec_str)
-#     t = [c[0] for c in curr]
-#     return t[1:20]
-
-# t = test_func("""SELECT document_text from public.scrapers_retsinfodocument""")
-
