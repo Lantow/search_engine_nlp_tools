@@ -10,3 +10,4 @@ if __name__ == '__main__':
         AH.clean_sents()
         AH.embed_text()
         this = [list(i) for i in AH.embeded_text]
+        

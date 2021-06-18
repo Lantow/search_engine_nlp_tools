@@ -9,7 +9,7 @@ class DataHandler(PostgresConnection):
     
     def load_data(self):
         print("loading data")
-        exec_str = "SELECT document_text FROM public.scrapers_retsinfodocument LIMIT 10"
+        exec_str = "SELECT doc_id, document_text FROM public.scrapers_retsinfodocument LIMIT 10"
         self.curr.execute(exec_str)
     
     def load_tokenizer(self):
@@ -23,9 +23,17 @@ class DataHandler(PostgresConnection):
         
     def tokenize_raw_text_data(self):
         if not hasattr(self, "tokenizer"): self.load_tokenizer()
-        tknz = lambda txt: self.tokenizer.tokenize(txt[0])
+        self.doc_id = []
+        self.sent_text = []
+        def tknz_and_keep_id(curr_item):
+            sent_text_in_doc = self.tokenizer.tokenize(curr_item[1])
+            self.sent_text.append(sent_text_in_doc)
+            self.doc_id.append(curr_item[0])
+            self.text_id_zip = zip()
+            return sent_text_in_doc
+        
         try:
-            self.tokenized_text = tqdm(map(tknz, self.curr), 
+            self.tokenized_map = tqdm(map(tknz_and_keep_id, self.curr), 
                                        "Tokenizing tekst text into sentances")
         except Exception as E:
             raise E
@@ -33,12 +41,13 @@ class DataHandler(PostgresConnection):
     def clean_sents(self):
         # For now we only remove \r and \n, as we might remove context useable by the BERT model
         pp_special_chars = lambda sent: re.sub("\s+", " ", re.sub("\r|\n|\t", "", sent))
+        #for now, there is no preprocessing on the numbers
         pp_numbers = lambda sent: sent
         preprocess_sent = lambda sent: pp_special_chars(pp_numbers(sent))
         preprocess_full_txt = lambda full_txt: map(preprocess_sent, full_txt)
         #Do something with the paragraph signs and the numbers etc.
         try:
-            self.cleaned_tokenized_text = tqdm(map(preprocess_full_txt, self.tokenized_text),
+            self.cleaned_tokenized_map= tqdm(map(preprocess_full_txt, self.tokenized_map),
                                                "cleaning sentances")
         except Exception as E:
             raise E
