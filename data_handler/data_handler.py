@@ -9,7 +9,7 @@ class DataHandler(PostgresConnection):
     
     def load_data(self):
         print("loading data")
-        exec_str = "SELECT doc_id, document_text FROM public.scrapers_retsinfodocument LIMIT 10"
+        exec_str = "SELECT id, document_text FROM public.scrapers_retsinfodocument WHERE document_emb_full IS NOT NULL LIMIT 5;"
         self.curr.execute(exec_str)
     
     def load_tokenizer(self):
@@ -23,13 +23,13 @@ class DataHandler(PostgresConnection):
         
     def tokenize_raw_text_data(self):
         if not hasattr(self, "tokenizer"): self.load_tokenizer()
+        
         self.doc_id = []
         self.sent_text = []
         def tknz_and_keep_id(curr_item):
             sent_text_in_doc = self.tokenizer.tokenize(curr_item[1])
             self.sent_text.append(sent_text_in_doc)
             self.doc_id.append(curr_item[0])
-            self.text_id_zip = zip()
             return sent_text_in_doc
         
         try:

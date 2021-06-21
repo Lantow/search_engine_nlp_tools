@@ -59,35 +59,3 @@ class AlgorithmHandler(DataHandler):
         
     #     to_100_dim = lambda emb_doc: pca.fit_transform(np.array(list(emb_doc)))
     #     self.embedded_reduced_doc = to_100_dim(self.embeded_doc))
-        
-# if __name__ == "__main__":
-#     with AlgorithmHandler() as AH:
-#         AH.load_data()
-#         AH.tokenize_raw_text_data()
-#         AH.clean_sents()
-#         AH.embed_text()
-#         AH.merge_embsent_to_docsent()
-        
-#         values = [(emb.tolist(), did) for emb, did in zip(AH.embeded_doc_map, AH.doc_id)]
-        
-#         #s = list(AH.embeded_doc)
-        
-#         # AH.reduce_dim()
-#         #t1 = [(a, mean_of_emb(c)) for (a, b), c in zip(AH.curr, AH.embeded_text, AH.tokenized_text)]
-#         # mean_of_emb = lambda x: np.array([t.numpy() for t in x]).mean(axis=0)
-#         # generate_values = lambda did_and_text, emb: (did_and_text[0], mean_of_emb(emb))
-#         # t = list(map(generate_values, zip(AH.curr, AH.embeded_text)))
-#         from psycopg2.extras import execute_batch
-#         print("opdaterer DB")
-#         execute_batch(AH.curr, f"""UPDATE public.scrapers_retsinfodocument 
-#                             SET document_emb_full = %s WHERE doc_id = %s;""",
-#                             values)
-        
-        # for (did,txt), emb in zip(AH.curr, AH.embeded_text):
-        #     doc_values.append((did, mean_of_emb(emb))
-        
-
- 
-        
-#TODO: lave embeded_text om til embeded_doc ved at tage gennemsnit
-#Itterer gennem zip-objectet og udtræk også sætninger
