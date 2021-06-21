@@ -9,7 +9,8 @@ class DataHandler(PostgresConnection):
     
     def load_data(self):
         print("loading data")
-        exec_str = "SELECT id, document_text FROM public.scrapers_retsinfodocument WHERE document_emb_full IS NOT NULL LIMIT 5;"
+        exec_str = "SELECT id, document_text FROM public.scrapers_retsinfodocument WHERE document_emb_full IS NULL LIMIT 10;"
+        self.curr.itersize = 5
         self.curr.execute(exec_str)
     
     def load_tokenizer(self):
@@ -51,3 +52,4 @@ class DataHandler(PostgresConnection):
                                                "cleaning sentances")
         except Exception as E:
             raise E
+

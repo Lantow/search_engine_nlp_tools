@@ -20,9 +20,9 @@ class AlgorithmHandler(DataHandler):
                 return model.embed_text(sent)[1]
             except Exception as E:
                 if "The size of tensor a" and "must match the size of tensor b" in str(E):
-                    #n is an arbitrary low number. OBS! This will still fail, if each char becomes a token
+                    # (n is an arbitrary low number. OBS! This will still fail, if each char becomes a token)
                     # TODO: this partially be solved with a better word tokenizer  
-                    n= 800
+                    n= 512
                     # Here the long sentance is split and embedded, whereafter an average is returned
                     split_sent_on_idx = lambda i: model.embed_text(sent[i:i+n])[1].numpy()
                     split_points = range(0, len(sent), n)
